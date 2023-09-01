@@ -58,9 +58,10 @@ const showSelectedChannel = items =>{
             </div>
             <h3 class="text-2xl font-bold">${channel.title}</h3>
         </div>
-        <div>
-        <p class=" ml-20 text-lg ">${channel.authors[0].profile_name}</p>
-        
+        <div class=" flex gap-3 items-center">
+            <p class=" ml-20 text-lg ">${channel.authors[0].profile_name}</p> 
+
+            <span>${channel.authors[0].verified? ('<img src="./images/fi_10629607.svg" alt="">') : '' } </span>  
         </div>
         <p class=" ml-20 text-lg ">${channel.others.views} views</p>
         
@@ -68,13 +69,20 @@ const showSelectedChannel = items =>{
         `;
         cardContainer.appendChild(div);
     });
+
+ 
     if(items.length === 0){
-        const noDataFOundContainer = document.getElementById('noData-found');
-        noDataFOundContainer.classList.remove('hidden');
+       const noDataFOundContainer = document.getElementById('noData-found');
+     noDataFOundContainer.innerHTML=`
+     <div class="flex justify-center items-center mb-5"><img src="images/Icon.png" alt=""></div>
+     <h1 class="text-center text-3xl font-bold">Oops!! Sorry, There is no <br> content here</h1>  
+     `;
     }
     else{
-        noDataFOundContainer.classList.add('hidden');
+        const noDataFOundContainer = document.getElementById('noData-found');
+        noDataFOundContainer.innerHTML ='';
     }
 }
+handleAllChannel(1000);
 
 loadData();
