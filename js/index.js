@@ -40,6 +40,7 @@ const handleAllChannel = async (id) => {
    const allData = data.data;
    showSelectedChannel(allData);
 }
+
 const showSelectedChannel = items =>{
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent='';
@@ -104,6 +105,34 @@ const showSelectedChannel = items =>{
     }
 }
 
+
+const sortData = async () => {
+    const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/1000`);
+    const data = await response.json();
+    const allData = data.data;
+    const sortDataConvert = (viewCount) =>{
+        if(viewCount.endsWith('K')){
+            return parseFloat(viewCount)*1000;
+        }
+    };
+    let finalSort =[...allData].sort((a,b) => {
+        const sortA = sortDataConvert(a.others.views);
+        const sortB = sortDataConvert(b.others.views);
+        return sortA - sortB;
+    });
+
+    return finalSort;
+}
+const sorting = async() =>{
+    const isSort = await sortData();
+    console.log(isSort);
+    showSelectedChannel(isSort);
+    
+
+}
+document.getElementById('short-view-container').addEventListener('click',function () {
+    sorting();
+})
 
 
 handleAllChannel(1000);
