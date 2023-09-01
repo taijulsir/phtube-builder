@@ -1,9 +1,8 @@
+// blog page
 document.getElementById("blog-container").addEventListener('click',function(){
     const newPage = 'blog.html';
     window.location.href=newPage;
 });
-
-
 
 // Load all category item
 const loadData = async () =>{
@@ -21,13 +20,17 @@ const showTabItem = tabItem => {
         tabDiv.classList=`tabs tabs-boxed `;
        
         tabDiv.innerHTML =`   
-    <a class="tab hover:bg-red-600" onclick="handleAllChannel('${items.category_id}')";>${items.category}</a> 
+    <a class="tab hover:bg-red-600 text-xl font-medium" onclick="handleAllChannel('${items.category_id}')";>${items.category}</a> 
         `;
         
         
         tabContainer.appendChild(tabDiv);
     });
 }
+
+// sort by view
+
+ 
 
 
 // when click tab then show this type data
@@ -41,13 +44,30 @@ const showSelectedChannel = items =>{
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent='';
     items?.forEach((channel) => {
+
+        const totalSecond = channel.others.posted_date;
+        const previousMinutes = totalSecond % 60 ;
+        const minutesTotal = (totalSecond - previousMinutes) / 60;
+        const previousHours = minutesTotal % 60;
+        const hoursTotal = (minutesTotal - previousHours) / 60;
+        
+        
+        let time ;
+        if(totalSecond.length === 0){
+            time;
+        }
+        else{
+            time = `${hoursTotal} Hours ${previousHours} minutes ago`;
+        }
         const div = document.createElement('div');
         div.classList=`card bg-base-100 shadow-xl`;
         div.innerHTML=`
-        
-            <img class="h-[200px] border border-none rounded-lg " src="${channel.thumbnail}" alt="Youtube-Thumbnail" />
-    
-        
+            <div class="relative">
+            <img class="h-[200px] w-full border border-none rounded-lg  " src="${channel.thumbnail}" alt="Youtube-Thumbnail" />
+            <div class="badge  ${time==undefined ? "bg-transparent border-none" : "bg-white"} bg-black absolute  bottom-3 right-2">${time?time : ''}</div>
+            </div>
+            
+           
 
         <div class="mt-5 flex items-center  gap-4 pl-3 ">
             <div class="avatar">
@@ -83,6 +103,9 @@ const showSelectedChannel = items =>{
         noDataFOundContainer.innerHTML ='';
     }
 }
+
+
+
 handleAllChannel(1000);
 
 loadData();
