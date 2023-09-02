@@ -28,16 +28,14 @@ const showTabItem = (tabItem) => {
         tabContainer.appendChild(tabDiv);
     });
 }
-
-
-
-
+// dynamically load data by id
 const handleAllChannel = async (id) => {
     const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
     const data = await response.json()
     const allData = data.data;
     const cardContainer = document.getElementById('card-container');
 
+    // sort card item by view
     const sortingByView = document.getElementById('sort-view');
     const sortingData = () => {
         const sortData = allData.sort((a, b) => {
@@ -55,7 +53,7 @@ const handleAllChannel = async (id) => {
         cardContainer.textContent = ""
         allCardItemData.forEach(card => {
 
-            // show time in card
+            // show time in thumbnail
             const totalSecond = card.others.posted_date;
             const previousMinutes = totalSecond % 60;
             const minutesTotal = (totalSecond - previousMinutes) / 60;
@@ -72,7 +70,7 @@ const handleAllChannel = async (id) => {
             }
 
 
-            // card data
+            // Show all card in ui
             const div = document.createElement('div');
             div.innerHTML = `
         <div id="card" class="card card-compact">
@@ -105,7 +103,6 @@ const handleAllChannel = async (id) => {
         })
 
         // no data found
-
         const noDataContainer = document.getElementById('noData-found');
         if (allCardItemData.length === 0) {
             noDataContainer.innerHTML = `

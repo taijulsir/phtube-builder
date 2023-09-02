@@ -3,51 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Blog QNA</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="./images/ytlogo.avif" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/ffd27d120a.js" crossorigin="anonymous"></script>
+    <title>Blog Qna</title>
 </head>
 <body>
+    <h1 class="text-center text-5xl mt-10 font-bold mb-10">Blog Questions And <span class="text-red-700">Answer</span></h1>
 
-    
-    <div class="container mx-auto mt-10 bg-gray-300 px-10 py-10">
-        <!-- Question 01 -->
+    <div class="container mx-auto">
+        <div class="join join-vertical w-full  bg-gray-200">
+
+        <!-- 1st question -->
+  <div class="collapse collapse-arrow join-item border border-base-300">
+    <input type="radio" name="my-accordion-4" checked="checked" /> 
+    <div class="collapse-title text-xl font-medium">
+        <i class="fa-solid fa-angles-right" style="color: #75787a;"></i> Discuss the scope of var, let, and const
+    </div>
+    <div class="collapse-content"> 
+        <div class="lg:ml-10 ml-4">
+            
+            <p class="text-xl mb-4 lg:ml-10 ml-5">Var, Let, and Const are three different ways to declare variables in JavaScript. They have distinct characteristics and scopes.Given below the scope of var,let and const variable scope:</p>
+            <h3 class="text-2xl font-semibold pb-3"><u>Scope of var:</u></h3>
+            <p class="text-xl mb-7 lg:ml-10 ml-5" >var declarations are globally scoped or function/locally scoped.
         
-    <h1 class="text-4xl font-bold pb-5"><u>Question 01:</u> Discuss the scope of var, let, and const</h1>
-    <div class="lg:ml-10 ml-4">
-    <h3 class="text-2xl font-semibold pb-3"><u>Var:</u></h3>
-    <p class="text-xl mb-4 lg:ml-10 ml-5">Before the advent of ES6, var declarations ruled. There are issues associated with variables declared with var, though. That is why it was necessary for new ways to declare variables to emerge. First, let's get to understand var more before we discuss those issues.</p>
-    <h3 class="text-2xl font-semibold pb-3"><u>Scope of var:</u></h3>
-    <p class="text-xl mb-7 lg:ml-10 ml-5" >var declarations are globally scoped or function/locally scoped.
-
-        The scope is global when a var variable is declared outside a function. This means that any variable that is declared with var outside a function block is available for use in the whole window.
+                The scope is global when a var variable is declared outside a function. This means that any variable that is declared with var outside a function block is available for use in the whole window.
+                
+                var is function scoped when it is declared within a function. This means that it is available and can be accessed only within that function.</p>
         
-        var is function scoped when it is declared within a function. This means that it is available and can be accessed only within that function.</p>
-
-    <h3 class="text-2xl font-semibold pb-3"><u>Let:</u></h3>
-    <p class="text-xl mb-4 lg:ml-10 ml-5">let is now preferred for variable declaration. It's no surprise as it comes as an improvement to var declarations. It also solves the problem with var that we just covered. Let's consider why this is so..</p>
-    <h3 class="text-2xl font-semibold pb-3"><u>Scope of Let:</u></h3>
-    <p class="text-xl mb-7 lg:ml-10 ml-5" >A block is a chunk of code bounded by {}. A block lives in curly braces. Anything within curly braces is a block.
-
-        So a variable declared in a block with let  is only available for use within that block.</p>
-
-    <h3 class="text-2xl font-semibold pb-3"><u>Const:</u></h3>
-    <p class="text-xl mb-4 lg:ml-10 ml-5">Variables declared with the const maintain constant values. const declarations share some similarities with let declarations.</p>
-    <h3 class="text-2xl font-semibold pb-3"><u>Scope of Const:</u></h3>
-    <p class="text-xl mb-10 lg:ml-10 ml-5" >Like let declarations, const declarations can only be accessed within the block they were declared.
-
-        Const cannot be updated or re-declared.
-        This means that the value of a variable declared with const remains the same within its scope. It cannot be updated or re-declared. So if we declare a variable with const, we can neither do this:</p> 
+           
+            <h3 class="text-2xl font-semibold pb-3"><u>Scope of Let:</u></h3>
+            <p class="text-xl mb-7 lg:ml-10 ml-5" >A block is a chunk of code bounded by {}. A block lives in curly braces. Anything within curly braces is a block.
         
+                So a variable declared in a block with let  is only available for use within that block.</p>
         
-</div>
-        <!-- question 02 -->
-        <h1 class="text-4xl font-bold pb-5 pt-5"><u>Question 02:</u> Tell us the use cases of <span class="text-green-400">Null</span>  and <span class="text-green-400"> Undefined</span></h1>
+           
+            <h3 class="text-2xl font-semibold pb-3"><u>Scope of Const:</u></h3>
+            <p class="text-xl mb-10 lg:ml-10 ml-5" >Like let declarations, const declarations can only be accessed within the block they were declared.
+        
+                Const cannot be updated or re-declared.
+                This means that the value of a variable declared with const remains the same within its scope. It cannot be updated or re-declared. So if we declare a variable with const, we can neither do this:</p> 
+                
+                
+        </div>
+    </div>
+  </div>
 
+
+        <!-- 2nd question -->
+  <div class="collapse collapse-arrow join-item border border-base-300">
+    <input type="radio" name="my-accordion-4" /> 
+    <div class="collapse-title text-xl font-medium">
+        <i class="fa-solid fa-angles-right" style="color: #75787a;"></i>
+        Tell us the use cases of Null and Undefined
+    </div>
+    <div class="collapse-content"> 
         <h3 class="text-2xl font-semibold pb-3"><u>Undefined</u></h3>
         <p class="text-xl pb-4">Undefined is a primitive data type that represents a variable that has been declared but has not been assigned a value. It's important to note that `undefined` is not the same as "not-defined"it's a specific value that a variable can have. </p>
         <p class="text-xl pb-3">Here are some common use cases for undefined:</p>
-        <ol class="list-decimal lg:ml-40">
+        <ol class="list-decimal lg:ml-40 md:ml-20 ml-5">
             <li class="pb-3 text-lg"><span class="text-xl font-semibold">Variable Initialization:</span><br>Variable Initialization: When you declare a variable without assigning an initial value to it, it is automatically initialized to `Undefined`.
             </li>
 
@@ -70,7 +85,7 @@
 
         <p class="text-xl pb-3">It is often used in specific use cases,which given below:</p>
 
-        <ol class="list-decimal lg:ml-40 pb-10">
+        <ol class="list-decimal lg:ml-40 md:ml-20 ml-5 pb-10">
             <li class="pb-3 text-lg"><span class="text-xl font-semibold">Initializing Variables:</span><br>You can initialize a variable to null when you want to explicitly indicate that it has no value, but you expect it to hold an object value later in the program.</li>
 
             <li class="pb-3 text-lg"><span class="text-xl font-semibold">Resetting or Clearing Values:</span><br>Setting a variable to null is a common way to clear or reset it, especially when you want to release memory resources associated with an object.</li>
@@ -86,11 +101,17 @@
             <li class="pb-3 text-lg"><span class="text-xl font-semibold">Default Values:</span><br>null can be used as a default value when you want to initialize variables or object properties and intend to set them to a different value later.</li>
 
         </ol>
+    </div>
+  </div>
 
-
-
-        <!-- question 03 -->
-        <h1 class="text-4xl font-bold pb-5"><u>Question 03:</u> What do you mean by REST API?</h1>
+  <!-- question 03 -->
+  <div class="collapse collapse-arrow join-item border border-base-300">
+    <input type="radio" name="my-accordion-4" /> 
+    <div class="collapse-title text-xl font-medium">
+        <i class="fa-solid fa-angles-right" style="color: #75787a;"></i>
+        What do you mean by REST API?
+    </div>
+    <div class="collapse-content"> 
         <h3 class="text-2xl font-semibold pb-5 "><u> Api</u></h3>
         <p class="text-xl mb-10 lg:ml-10 ml-5">An API for a website is code that allows two software programs to communicate with each other. The API spells out the proper way for a developer to write a program requesting services from an operating system or other application.</p>
 
@@ -122,8 +143,24 @@
                 5. multipart/form-data
             </p>
             
-        
     </div>
-    <script src="js/index.js"></script>
+  </div>
+        </div>
+   </div>
+
+   <!-- Go Home Button -->
+    <div class="flex justify-center items-center mt-5">
+        <button id="go-home" class="btn btn-error text-white">Go Home</button>
+    </div>
+
+    <!-- Go Home Js function -->
+     
+    <script>
+        document.getElementById('go-home').addEventListener('click',function(){
+    const homePage = 'index.html';
+    window.location.href=homePage;
+});
+    </script>
+
 </body>
 </html>
