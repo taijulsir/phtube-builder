@@ -53,10 +53,10 @@ const handleAllChannel = async (id) => {
     sortingByView.addEventListener('click', sortingData);
     const cardItem = (allCardItemData) => {
         cardContainer.textContent = ""
-        allCardItemData.forEach(data => {
+        allCardItemData.forEach(card => {
 
             // show time in card
-            const totalSecond = data.others.posted_date
+            const totalSecond = card.others.posted_date;
             const previousMinutes = totalSecond % 60;
             const minutesTotal = (totalSecond - previousMinutes) / 60;
             const previousHours = minutesTotal % 60;
@@ -78,7 +78,7 @@ const handleAllChannel = async (id) => {
         <div id="card" class="card card-compact">
             <div class="relative">
                 <figure class="w-full h-[200px]">
-                    <img class="w-full h-full rounded-lg" src="${data.thumbnail}" alt="Shoes" />
+                    <img class="w-full h-full rounded-lg" src="${card.thumbnail}" alt="Shoes" />
                 </figure>
                 <div class=" ${time==undefined ? "bg-transparent border-none " : "text-white"} bg-black  opacity-70 absolute bottom-3 right-2">${time?time : ''}</div>
             </div>
@@ -86,18 +86,18 @@ const handleAllChannel = async (id) => {
                 <div class="flex gap-4 items-center">
                     <div class="avatar">
                         <div class="w-10 rounded-full">
-                            <img src="${data?.authors[0]?.profile_picture}" />
+                            <img src="${card?.authors[0]?.profile_picture}" />
                         </div>
                     </div>
                     <div>
-                        <h2 class="text-[#171717] font-bold text-lg"> ${data?.title} </h2>
+                        <h2 class="text-[#171717] font-bold text-lg"> ${card?.title} </h2>
                     </div>
                 </div>
                 <div class="flex gap-3 ml-14">
-                    <div class="text-sm font-normal text-[#252525B2]">${data?.authors[0]?.profile_name}</div>
-                    <span class="w-5 h-5">${data?.authors[0]?.verified? ('<img src="./images/fi_10629607.svg">') : ''}</span>
+                    <div class="text-sm font-normal text-[#252525B2]">${card?.authors[0]?.profile_name}</div>
+                    <span class="w-5 h-5">${card?.authors[0]?.verified? ('<img src="./images/fi_10629607.svg">') : ''}</span>
                 </div>
-                <p class="text-sm font-normal text-[#252525B2] ml-14">${data?.others?.views} Views</p>
+                <p class="text-sm font-normal text-[#252525B2] ml-14">${card?.others?.views} Views</p>
             </div>
         </div>
         `;
