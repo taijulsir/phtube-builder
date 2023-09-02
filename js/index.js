@@ -1,18 +1,19 @@
 // blog page
-document.getElementById("blog-container").addEventListener('click',function(){
+document.getElementById('blog-container').addEventListener('click',function(){
     const newPage = 'blog.html';
     window.location.href=newPage;
 });
 
 // Load all category item
 const loadData = async () =>{
-    const response = await fetch(' https://openapi.programming-hero.com/api/videos/categories');
+    const response = await fetch('https://openapi.programming-hero.com/api/videos/categories');
     const data = await response.json();
     const allData = data.data;
     showTabItem(allData);
 }
 // show category in tab
-const showTabItem = tabItem => {
+const showTabItem = (tabItem) => {
+
     const tabContainer = document.getElementById('tab-container');
     tabItem.forEach(items => {
         const tabDiv = document.createElement('div');
@@ -28,112 +29,107 @@ const showTabItem = tabItem => {
     });
 }
 
-// sort by view
-
- 
 
 
-// when click tab then show this type data
+
 const handleAllChannel = async (id) => {
-   const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
-   const data = await response.json();
-   const allData = data.data;
-   showSelectedChannel(allData);
-}
-
-const showSelectedChannel = items =>{
+    const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
+    const data = await response.json()
+    const allData = data.data;
     const cardContainer = document.getElementById('card-container');
-    cardContainer.textContent='';
-    items?.forEach((channel) => {
 
-        const totalSecond = channel.others.posted_date;
-        const previousMinutes = totalSecond % 60 ;
-        const minutesTotal = (totalSecond - previousMinutes) / 60;
-        const previousHours = minutesTotal % 60;
-        const hoursTotal = (minutesTotal - previousHours) / 60;
-        
-        
-        let time ;
-        if(totalSecond.length === 0){
-            time;
-        }
-        else{
-            time = `${hoursTotal} Hours ${previousHours} minutes ago`;
-        }
-        const div = document.createElement('div');
-        div.classList=`card bg-base-100 shadow-xl`;
-        div.innerHTML=`
+    const sortingByView = document.getElementById('sort-view');
+    const sortingData = () => {
+        const sortData = allData.sort((a, b) => {
+            a = a?.others?.views;
+            a = parseFloat(a.replace("K", ""));
+
+            b = b?.others?.views;
+            b = parseFloat(b.replace("K", ""));
+            return b - a;
+        })
+        cardItem(sortData);
+    }
+    sortingByView.addEventListener('click', sortingData);
+    const cardItem = (allCardItemData) => {
+        cardContainer.textContent = ""
+        allCardItemData.forEach(data => {
+
+            // show time in card
+            const totalSecond = data.others.posted_date
+            const previousMinutes = totalSecond % 60;
+            const minutesTotal = (totalSecond - previousMinutes) / 60;
+            const previousHours = minutesTotal % 60;
+            const hoursTotal = (minutesTotal - previousHours) / 60
+
+
+            let time ;
+            if(totalSecond.length === 0){
+                time;
+            }
+            else{
+                time = `${hoursTotal} Hours ${previousHours} Minutes ago`;
+            }
+
+
+            // card data
+            const div = document.createElement('div');
+            div.innerHTML = `
+        <div id="card" class="card card-compact">
             <div class="relative">
-            <img class="h-[200px] w-full border border-none rounded-lg  " src="${channel.thumbnail}" alt="Youtube-Thumbnail" />
-            <div class="badge  ${time==undefined ? "bg-transparent border-none" : "bg-white"} bg-black absolute  bottom-3 right-2">${time?time : ''}</div>
+                <figure class="w-full h-[200px]">
+                    <img class="w-full h-full rounded-lg" src="${data.thumbnail}" alt="Shoes" />
+                </figure>
+                <div class=" ${time==undefined ? "bg-transparent border-none " : "text-black"} bg-amber-300 absolute bottom-3 right-2">${time?time : ''}</div>
             </div>
-            
-           
-
-        <div class="mt-5 flex items-center  gap-4 pl-3 ">
-            <div class="avatar">
-                <div class="w-12 rounded-full">
-                    <img src="${channel.authors[0].profile_picture}" />
-                
+            <div class="card-body">
+                <div class="flex gap-4 items-center">
+                    <div class="avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="${data?.authors[0]?.profile_picture}" />
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-[#171717] font-bold text-lg"> ${data?.title} </h2>
+                    </div>
                 </div>
+                <div class="flex gap-3 ml-14">
+                    <div class="text-sm font-normal text-[#252525B2]">${data?.authors[0]?.profile_name}</div>
+                    <span class="w-5 h-5">${data?.authors[0]?.verified? ('<img src="./images/fi_10629607.svg">') : ''}</span>
+                </div>
+                <p class="text-sm font-normal text-[#252525B2] ml-14">${data?.others?.views} Views</p>
             </div>
-            <h3 class="text-2xl font-bold">${channel.title}</h3>
         </div>
-        <div class=" flex gap-3 items-center">
-            <p class=" ml-20 text-lg ">${channel.authors[0].profile_name}</p> 
-
-            <span>${channel.authors[0].verified? ('<img src="./images/fi_10629607.svg" alt="">') : '' } </span>  
-        </div>
-        <p class=" ml-20 text-lg ">${channel.others.views} views</p>
-        
-  
         `;
         cardContainer.appendChild(div);
-    });
+        })
 
- 
-    if(items.length === 0){
-       const noDataFOundContainer = document.getElementById('noData-found');
-     noDataFOundContainer.innerHTML=`
-     <div class="flex justify-center items-center mb-5"><img src="images/Icon.png" alt=""></div>
-     <h1 class="text-center text-3xl font-bold">Oops!! Sorry, There is no <br> content here</h1>  
-     `;
-    }
-    else{
-        const noDataFOundContainer = document.getElementById('noData-found');
-        noDataFOundContainer.innerHTML ='';
-    }
-}
+        // no data found
 
+        const noDataContainer = document.getElementById('noData-found');
+        if (allCardItemData.length === 0) {
+            noDataContainer.innerHTML = `
+       <div class="flex justify-center items-center ">
+            <div class="w-3/4 mx-auto text-center">
+                <div class=" mt-10 lg:mt-28 mb-6 w-44 mx-auto">
+                    <img src="/images/icon.png" alt="" />
+                </div>
+                <div>
+                    <h2 class="font-bold text-4xl text-[#171717]">Oops!! Sorry, There is <br> no content here</h2>
+                </div>
+            </div>
+       </div>
 
-const sortData = async () => {
-    const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/1000`);
-    const data = await response.json();
-    const allData = data.data;
-    const sortDataConvert = (viewCount) =>{
-        if(viewCount.endsWith('K')){
-            return parseFloat(viewCount)*1000;
+       `;
         }
-    };
-    let finalSort =[...allData].sort((a,b) => {
-        const sortA = sortDataConvert(a.others.views);
-        const sortB = sortDataConvert(b.others.views);
-        return sortA - sortB;
-    });
+         else {
+            noDataContainer.innerHTML = ""
+        }
 
-    return finalSort;
-}
-const sorting = async() =>{
-    const isSort = await sortData();
-    console.log(isSort);
-    showSelectedChannel(isSort);
-    
+    }
+    cardItem(allData);
 
 }
-document.getElementById('short-view-container').addEventListener('click',function () {
-    sorting();
-})
-
 
 handleAllChannel(1000);
 
