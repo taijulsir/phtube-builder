@@ -80,7 +80,7 @@ const handleAllChannel = async (id) => {
                 <figure class="w-full h-[200px]">
                     <img class="w-full h-full rounded-lg" src="${data.thumbnail}" alt="Shoes" />
                 </figure>
-                <div class=" ${time==undefined ? "bg-transparent border-none " : "text-black"} bg-amber-300 absolute bottom-3 right-2">${time?time : ''}</div>
+                <div class=" ${time==undefined ? "bg-transparent border-none " : "text-white"} bg-black  opacity-70 absolute bottom-3 right-2">${time?time : ''}</div>
             </div>
             <div class="card-body">
                 <div class="flex gap-4 items-center">
